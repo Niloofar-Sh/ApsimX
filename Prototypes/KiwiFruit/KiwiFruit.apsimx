@@ -65,6 +65,7 @@
               "VariableNames": [
                 "[KiwiFruit].Leaf.Wt",
                 "[KiwiFruit].Leaf.Canopy.Height",
+                "[KiwiFruit].Leaf.NodeNumber",
                 "[Clock].Today"
               ],
               "EventNames": [
@@ -1785,6 +1786,74 @@
           ],
           "Enabled": true,
           "ReadOnly": false
+        },
+        {
+          "$type": "Models.Graph, Models",
+          "Caption": null,
+          "Axis": [
+            {
+              "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+              "Title": "",
+              "Position": 0,
+              "Inverted": false,
+              "CrossesAtZero": false,
+              "LabelOnOneLine": false,
+              "Minimum": "NaN",
+              "Maximum": "NaN",
+              "Interval": null
+            },
+            {
+              "$type": "APSIM.Shared.Graphing.Axis, APSIM.Shared",
+              "Title": null,
+              "Position": 3,
+              "Inverted": false,
+              "CrossesAtZero": false,
+              "LabelOnOneLine": false,
+              "Minimum": "NaN",
+              "Maximum": "NaN",
+              "Interval": null
+            }
+          ],
+          "LegendPosition": 5,
+          "LegendOrientation": 0,
+          "AnnotationLocation": 0,
+          "DisabledSeries": [],
+          "LegendOutsideGraph": false,
+          "Name": "NodeNumber",
+          "ResourceName": null,
+          "Children": [
+            {
+              "$type": "Models.Series, Models",
+              "Type": 1,
+              "XAxis": 3,
+              "YAxis": 0,
+              "ColourArgb": -11094807,
+              "FactorToVaryColours": null,
+              "FactorToVaryMarkers": null,
+              "FactorToVaryLines": null,
+              "Marker": 11,
+              "MarkerSize": 0,
+              "Line": 0,
+              "LineThickness": 0,
+              "TableName": "Report",
+              "XFieldName": "Clock.Today",
+              "YFieldName": "KiwiFruit.Leaf.NodeNumber",
+              "X2FieldName": null,
+              "Y2FieldName": null,
+              "ShowInLegend": true,
+              "IncludeSeriesNameInLegend": false,
+              "Cumulative": false,
+              "CumulativeX": false,
+              "Filter": null,
+              "Name": "Stage",
+              "ResourceName": null,
+              "Children": [],
+              "Enabled": true,
+              "ReadOnly": false
+            }
+          ],
+          "Enabled": true,
+          "ReadOnly": false
         }
       ],
       "Enabled": true,
@@ -1926,7 +1995,7 @@
                   "Start": "Dormant",
                   "End": "BudBreak",
                   "IsEmerged": false,
-                  "DAWStoProgress": 0,
+                  "DAWStoProgress": 90,
                   "Name": "SpringDormancy",
                   "ResourceName": null,
                   "Children": [],
@@ -1938,11 +2007,11 @@
                   "Start": "BudBreak",
                   "End": "Flowering",
                   "IsEmerged": true,
-                  "DAWStoProgress": 0,
+                  "DAWStoProgress": 120,
                   "Name": "EarlyLeaf",
                   "ResourceName": null,
                   "Children": [],
-                  "Enabled": false,
+                  "Enabled": true,
                   "ReadOnly": false
                 },
                 {
@@ -1950,11 +2019,11 @@
                   "Start": "Flowering",
                   "End": "StartFruitGrowth",
                   "IsEmerged": true,
-                  "DAWStoProgress": 0,
+                  "DAWStoProgress": 150,
                   "Name": "EarlyFruit",
                   "ResourceName": null,
                   "Children": [],
-                  "Enabled": false,
+                  "Enabled": true,
                   "ReadOnly": false
                 },
                 {
@@ -1962,11 +2031,11 @@
                   "Start": "StartFruitGrowth",
                   "End": "FruitMature",
                   "IsEmerged": true,
-                  "DAWStoProgress": 0,
+                  "DAWStoProgress": 180,
                   "Name": "FruitGrowth",
                   "ResourceName": null,
                   "Children": [],
-                  "Enabled": false,
+                  "Enabled": true,
                   "ReadOnly": false
                 },
                 {
@@ -1974,11 +2043,11 @@
                   "Start": "FruitMature",
                   "End": "BareTree",
                   "IsEmerged": false,
-                  "DAWStoProgress": 365,
+                  "DAWStoProgress": 300,
                   "Name": "LeafDrop",
                   "ResourceName": null,
                   "Children": [],
-                  "Enabled": false,
+                  "Enabled": true,
                   "ReadOnly": false
                 },
                 {
@@ -1986,11 +2055,11 @@
                   "Start": "BareTree",
                   "End": "SpringDormant",
                   "IsEmerged": false,
-                  "DAWStoProgress": 365,
+                  "DAWStoProgress": 366,
                   "Name": "WinterDormancy",
                   "ResourceName": null,
                   "Children": [],
-                  "Enabled": false,
+                  "Enabled": true,
                   "ReadOnly": false
                 },
                 {
@@ -2002,7 +2071,7 @@
                   "Name": "GotoPhase",
                   "ResourceName": null,
                   "Children": [],
-                  "Enabled": false,
+                  "Enabled": true,
                   "ReadOnly": false
                 },
                 {
@@ -3261,7 +3330,7 @@
                         },
                         {
                           "$type": "Models.Functions.Constant, Models",
-                          "FixedValue": 0.009960649671152885,
+                          "FixedValue": 0.001,
                           "Units": "/d",
                           "Name": "MaxRate",
                           "ResourceName": null,
