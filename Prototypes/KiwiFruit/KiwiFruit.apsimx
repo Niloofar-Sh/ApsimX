@@ -1872,301 +1872,32 @@
               "ResourceName": null,
               "Children": [
                 {
-                  "$type": "Models.Memo, Models",
-                  "Text": "The fodder beet model is described for growth and dry matter production using solar radiation and temperature\r\nas driving functions. The effect of temperature is quantified using a thermal-time accumulation function.\r\nThermal-time is calculated in degree days for ambient temperature above a base temperature (Tbase). Tbase is \r\nassumed to be 0ÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â‚ÃƒÂƒÃ‚Â‚ÃƒÂ‚Ã‚Â°C ([Chakwizira_etal_2016a]).",
-                  "Name": "Memo",
+                  "$type": "Models.Functions.Constant, Models",
+                  "FixedValue": 1.0,
+                  "Units": "days",
+                  "Name": "ThermalTime",
                   "ResourceName": null,
                   "Children": [],
                   "Enabled": true,
                   "ReadOnly": false
                 },
                 {
-                  "$type": "Models.Functions.MultiplyFunction, Models",
-                  "Name": "ThermalTime",
-                  "ResourceName": null,
-                  "Children": [
-                    {
-                      "$type": "Models.Functions.PhaseLookup, Models",
-                      "Name": "PhaseLookup",
-                      "ResourceName": null,
-                      "Children": [
-                        {
-                          "$type": "Models.Functions.PhaseLookupValue, Models",
-                          "Start": "Sowing",
-                          "End": "Germination",
-                          "Name": "SoilTemperature",
-                          "ResourceName": null,
-                          "Children": [
-                            {
-                              "$type": "Models.Functions.Constant, Models",
-                              "FixedValue": 15.0,
-                              "Units": null,
-                              "Name": "ThermalTime",
-                              "ResourceName": null,
-                              "Children": [],
-                              "Enabled": true,
-                              "ReadOnly": false
-                            },
-                            {
-                              "$type": "Models.Memo, Models",
-                              "Text": "The effect of soil temperature can go beyond germination as has been demonstrated in previous studies \r\n([Stone_etal_1998]).\r\n",
-                              "Name": "Memo",
-                              "ResourceName": null,
-                              "Children": [],
-                              "Enabled": true,
-                              "ReadOnly": false
-                            }
-                          ],
-                          "Enabled": true,
-                          "ReadOnly": false
-                        },
-                        {
-                          "$type": "Models.Functions.PhaseLookupValue, Models",
-                          "Start": "Germination",
-                          "End": "Maturity",
-                          "Name": "AirTemperature",
-                          "ResourceName": null,
-                          "Children": [
-                            {
-                              "$type": "Models.Functions.SubDailyInterpolation, Models",
-                              "agregationMethod": 0,
-                              "Name": "ThermalTime",
-                              "ResourceName": null,
-                              "Children": [
-                                {
-                                  "$type": "Models.Functions.XYPairs, Models",
-                                  "X": [
-                                    0.0,
-                                    25.0,
-                                    30.0,
-                                    45.0
-                                  ],
-                                  "Y": [
-                                    0.0,
-                                    25.0,
-                                    25.0,
-                                    0.0
-                                  ],
-                                  "Name": "Response",
-                                  "ResourceName": null,
-                                  "Children": [],
-                                  "Enabled": true,
-                                  "ReadOnly": false
-                                },
-                                {
-                                  "$type": "Models.Functions.ThreeHourAirTemperature, Models",
-                                  "TempRangeFactors": null,
-                                  "Name": "InterpolationMethod",
-                                  "ResourceName": null,
-                                  "Children": [],
-                                  "Enabled": true,
-                                  "ReadOnly": false
-                                }
-                              ],
-                              "Enabled": true,
-                              "ReadOnly": false
-                            },
-                            {
-                              "$type": "Models.Memo, Models",
-                              "Text": "Temperature is extrapolated to 3-hourly values from daily maximum and minimum using a sinusoidal function, and thermal-time accumulation is calculated for each period and combined to give daily values ([Jones_etal_1986]). The optimum temperature was set at 25ÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â¢ÃƒÂƒÃ‚Â¢ÃƒÂ‚Ã‚Â‚ÃƒÂ‚Ã‚Â¬ÃƒÂƒÃ‚Â¢ÃƒÂ‚Ã‚Â€ÃƒÂ‚Ã‚Âœ30ÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â‚ÃƒÂƒÃ‚Â‚ÃƒÂ‚Ã‚Â°C with a maximum of 45ÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â‚ÃƒÂƒÃ‚Â‚ÃƒÂ‚Ã‚Â°C, targets assumed similar to those of sugar beet reported by ([Ober_Rajabi_2010]) and ([Sanghera_etal_2016]).",
-                              "Name": "Memo",
-                              "ResourceName": null,
-                              "Children": [],
-                              "Enabled": true,
-                              "ReadOnly": false
-                            }
-                          ],
-                          "Enabled": true,
-                          "ReadOnly": false
-                        }
-                      ],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    },
-                    {
-                      "$type": "Models.Functions.AddFunction, Models",
-                      "Name": "DroughtPhenologyAcelleration",
-                      "ResourceName": null,
-                      "Children": [
-                        {
-                          "$type": "Models.Functions.Constant, Models",
-                          "FixedValue": 1.0,
-                          "Units": null,
-                          "Name": "One",
-                          "ResourceName": null,
-                          "Children": [],
-                          "Enabled": true,
-                          "ReadOnly": false
-                        },
-                        {
-                          "$type": "Models.Functions.MultiplyFunction, Models",
-                          "Name": "Stress",
-                          "ResourceName": null,
-                          "Children": [
-                            {
-                              "$type": "Models.Functions.Constant, Models",
-                              "FixedValue": 2.0,
-                              "Units": null,
-                              "Name": "StressResponseCoefficient",
-                              "ResourceName": null,
-                              "Children": [],
-                              "Enabled": true,
-                              "ReadOnly": false
-                            },
-                            {
-                              "$type": "Models.Functions.LinearInterpolationFunction, Models",
-                              "Name": "StressFactor",
-                              "ResourceName": null,
-                              "Children": [
-                                {
-                                  "$type": "Models.Functions.XYPairs, Models",
-                                  "X": [
-                                    0.0,
-                                    1.0
-                                  ],
-                                  "Y": [
-                                    0.0,
-                                    0.0
-                                  ],
-                                  "Name": "XYPairs",
-                                  "ResourceName": null,
-                                  "Children": [],
-                                  "Enabled": true,
-                                  "ReadOnly": false
-                                },
-                                {
-                                  "$type": "Models.Functions.VariableReference, Models",
-                                  "VariableName": "[KiwiFruit].Leaf.Canopy.Fw",
-                                  "Name": "XValue",
-                                  "ResourceName": null,
-                                  "Children": [],
-                                  "Enabled": true,
-                                  "ReadOnly": false
-                                }
-                              ],
-                              "Enabled": true,
-                              "ReadOnly": false
-                            }
-                          ],
-                          "Enabled": true,
-                          "ReadOnly": false
-                        }
-                      ],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    }
-                  ],
-                  "Enabled": true,
-                  "ReadOnly": false
-                },
-                {
-                  "$type": "Models.PMF.Phen.GerminatingPhase, Models",
-                  "Start": "Sowing",
-                  "End": "Germination",
+                  "$type": "Models.PMF.Phen.GenericPhase, Models",
+                  "Start": "ModelInitialisation",
+                  "End": "Dormant",
                   "IsEmerged": false,
-                  "Name": "Germinating",
+                  "Name": "ZeroPhase",
                   "ResourceName": null,
                   "Children": [
-                    {
-                      "$type": "Models.Functions.Constant, Models",
-                      "FixedValue": 0.0,
-                      "Units": null,
-                      "Name": "MinSoilTemperature",
-                      "ResourceName": null,
-                      "Children": [],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    }
-                  ],
-                  "Enabled": true,
-                  "ReadOnly": false
-                },
-                {
-                  "$type": "Models.PMF.Phen.EmergingPhase, Models",
-                  "Start": "Germination",
-                  "End": "Emergence",
-                  "IsEmerged": true,
-                  "TTForTimeStep": 0.0,
-                  "Name": "Emerging",
-                  "ResourceName": null,
-                  "Children": [
-                    {
-                      "$type": "Models.Functions.VariableReference, Models",
-                      "VariableName": "[Phenology].ThermalTime",
-                      "Name": "ThermalTime",
-                      "ResourceName": null,
-                      "Children": [],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    },
                     {
                       "$type": "Models.Memo, Models",
-                      "Text": "This is an empirical fit where 12.5ÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â‚ÃƒÂƒÃ‚Â‚ÃƒÂ‚Ã‚Â°Cd per mm sowing depth is assumed based on the 2014 sowing date trial results ([Khaembah_etal_2017]).",
+                      "Text": "It is necessary to have a phase before Dormancy otherwise the rewind doesn't work",
                       "Name": "Memo",
                       "ResourceName": null,
                       "Children": [],
                       "Enabled": true,
                       "ReadOnly": false
                     },
-                    {
-                      "$type": "Models.Functions.AddFunction, Models",
-                      "Name": "Target",
-                      "ResourceName": null,
-                      "Children": [
-                        {
-                          "$type": "Models.Functions.Constant, Models",
-                          "FixedValue": 0.0,
-                          "Units": null,
-                          "Name": "ShootLag",
-                          "ResourceName": null,
-                          "Children": [],
-                          "Enabled": true,
-                          "ReadOnly": false
-                        },
-                        {
-                          "$type": "Models.Functions.MultiplyFunction, Models",
-                          "Name": "DepthxRate",
-                          "ResourceName": null,
-                          "Children": [
-                            {
-                              "$type": "Models.Functions.Constant, Models",
-                              "FixedValue": 12.5,
-                              "Units": null,
-                              "Name": "ShootRate",
-                              "ResourceName": null,
-                              "Children": [],
-                              "Enabled": true,
-                              "ReadOnly": false
-                            },
-                            {
-                              "$type": "Models.Functions.VariableReference, Models",
-                              "VariableName": "[Plant].SowingData.Depth",
-                              "Name": "VariableReference",
-                              "ResourceName": null,
-                              "Children": [],
-                              "Enabled": true,
-                              "ReadOnly": false
-                            }
-                          ],
-                          "Enabled": true,
-                          "ReadOnly": false
-                        }
-                      ],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    }
-                  ],
-                  "Enabled": true,
-                  "ReadOnly": false
-                },
-                {
-                  "$type": "Models.PMF.Phen.GenericPhase, Models",
-                  "Start": "Emergence",
-                  "End": "InitialReproductive",
-                  "IsEmerged": true,
-                  "Name": "Vegetative",
-                  "ResourceName": null,
-                  "Children": [
                     {
                       "$type": "Models.Functions.VariableReference, Models",
                       "VariableName": "[Phenology].ThermalTime",
@@ -2177,123 +1908,144 @@
                       "ReadOnly": false
                     },
                     {
-                      "$type": "Models.Functions.MultiplyFunction, Models",
-                      "Name": "Target",
-                      "ResourceName": null,
-                      "Children": [
-                        {
-                          "$type": "Models.Functions.LinearInterpolationFunction, Models",
-                          "Name": "PhotoPeriodResponse",
-                          "ResourceName": null,
-                          "Children": [
-                            {
-                              "$type": "Models.Functions.XYPairs, Models",
-                              "X": [
-                                13.0,
-                                16.0
-                              ],
-                              "Y": [
-                                1.0,
-                                1.0
-                              ],
-                              "Name": "XYPairs",
-                              "ResourceName": null,
-                              "Children": [],
-                              "Enabled": true,
-                              "ReadOnly": false
-                            },
-                            {
-                              "$type": "Models.Functions.VariableReference, Models",
-                              "VariableName": "[Phenology].Photoperiod",
-                              "Name": "XValue",
-                              "ResourceName": null,
-                              "Children": [],
-                              "Enabled": true,
-                              "ReadOnly": false
-                            }
-                          ],
-                          "Enabled": true,
-                          "ReadOnly": false
-                        },
-                        {
-                          "$type": "Models.Functions.Constant, Models",
-                          "FixedValue": 3000.0,
-                          "Units": "oCd",
-                          "Name": "MaxThermalTimeToBolt",
-                          "ResourceName": null,
-                          "Children": [],
-                          "Enabled": true,
-                          "ReadOnly": false
-                        },
-                        {
-                          "$type": "Models.Memo, Models",
-                          "Text": "The effect of photoperiod on the vegetative phase is assumed neglible. The maximum TT of 3200ÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â‚ÃƒÂƒÃ‚Â‚ÃƒÂ‚Ã‚Â°Cd based on the 2014 October sowing date data([Khaembah_etal_2017]) is used here.",
-                          "Name": "Memo",
-                          "ResourceName": null,
-                          "Children": [],
-                          "Enabled": true,
-                          "ReadOnly": false
-                        }
-                      ],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    }
-                  ],
-                  "Enabled": true,
-                  "ReadOnly": false
-                },
-                {
-                  "$type": "Models.PMF.Phen.GenericPhase, Models",
-                  "Start": "InitialReproductive",
-                  "End": "StartBolting",
-                  "IsEmerged": true,
-                  "Name": "EarlyReproductive",
-                  "ResourceName": null,
-                  "Children": [
-                    {
                       "$type": "Models.Functions.Constant, Models",
-                      "FixedValue": 1.0,
+                      "FixedValue": 0.0,
                       "Units": "oCd",
                       "Name": "Target",
                       "ResourceName": null,
                       "Children": [],
                       "Enabled": true,
                       "ReadOnly": false
-                    },
+                    }
+                  ],
+                  "Enabled": true,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.PMF.Phen.DAWSPhase, Models",
+                  "Start": "Dormant",
+                  "End": "BudBreak",
+                  "IsEmerged": false,
+                  "DAWStoProgress": 0,
+                  "Name": "SpringDormancy",
+                  "ResourceName": null,
+                  "Children": [],
+                  "Enabled": true,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.PMF.Phen.DAWSPhase, Models",
+                  "Start": "BudBreak",
+                  "End": "Flowering",
+                  "IsEmerged": true,
+                  "DAWStoProgress": 0,
+                  "Name": "EarlyLeaf",
+                  "ResourceName": null,
+                  "Children": [],
+                  "Enabled": false,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.PMF.Phen.DAWSPhase, Models",
+                  "Start": "Flowering",
+                  "End": "StartFruitGrowth",
+                  "IsEmerged": true,
+                  "DAWStoProgress": 0,
+                  "Name": "EarlyFruit",
+                  "ResourceName": null,
+                  "Children": [],
+                  "Enabled": false,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.PMF.Phen.DAWSPhase, Models",
+                  "Start": "StartFruitGrowth",
+                  "End": "FruitMature",
+                  "IsEmerged": true,
+                  "DAWStoProgress": 0,
+                  "Name": "FruitGrowth",
+                  "ResourceName": null,
+                  "Children": [],
+                  "Enabled": false,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.PMF.Phen.DAWSPhase, Models",
+                  "Start": "FruitMature",
+                  "End": "BareTree",
+                  "IsEmerged": false,
+                  "DAWStoProgress": 365,
+                  "Name": "LeafDrop",
+                  "ResourceName": null,
+                  "Children": [],
+                  "Enabled": false,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.PMF.Phen.DAWSPhase, Models",
+                  "Start": "BareTree",
+                  "End": "SpringDormant",
+                  "IsEmerged": false,
+                  "DAWStoProgress": 365,
+                  "Name": "WinterDormancy",
+                  "ResourceName": null,
+                  "Children": [],
+                  "Enabled": false,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.PMF.Phen.GotoPhase, Models",
+                  "Start": "SpringDormant",
+                  "IsEmerged": false,
+                  "PhaseNameToGoto": "SpringDormancy",
+                  "RemovalType": 0,
+                  "Name": "GotoPhase",
+                  "ResourceName": null,
+                  "Children": [],
+                  "Enabled": false,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.PMF.Phen.Age, Models",
+                  "Name": "Age",
+                  "ResourceName": null,
+                  "Children": [],
+                  "Enabled": true,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.Functions.AddFunction, Models",
+                  "Name": "AgeDecimal",
+                  "ResourceName": null,
+                  "Children": [
                     {
-                      "$type": "Models.Memo, Models",
-                      "Text": "This an empirical fit - 400ÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â‚ÃƒÂƒÃ‚Â‚ÃƒÂ‚Ã‚Â°Cd estimated from the 2014 sowing date trial ([Khaembah_etal_2017]).",
-                      "Name": "Memo",
+                      "$type": "Models.Functions.VariableReference, Models",
+                      "VariableName": "[Phenology].Age",
+                      "Name": "AgeInt",
                       "ResourceName": null,
                       "Children": [],
                       "Enabled": true,
                       "ReadOnly": false
                     },
                     {
-                      "$type": "Models.Functions.LinearInterpolationFunction, Models",
-                      "Name": "Progression",
+                      "$type": "Models.Functions.DivideFunction, Models",
+                      "Name": "Decimal",
                       "ResourceName": null,
                       "Children": [
                         {
-                          "$type": "Models.Functions.XYPairs, Models",
-                          "X": [
-                            13.0,
-                            14.0
-                          ],
-                          "Y": [
-                            0.0,
-                            1.0
-                          ],
-                          "Name": "XYPairs",
+                          "$type": "Models.Functions.VariableReference, Models",
+                          "VariableName": "[Weather].DaysSinceWinterSolstice",
+                          "Name": "DOY",
                           "ResourceName": null,
                           "Children": [],
                           "Enabled": true,
                           "ReadOnly": false
                         },
                         {
-                          "$type": "Models.Functions.VariableReference, Models",
-                          "VariableName": "[Phenology].Photoperiod",
-                          "Name": "XValue",
+                          "$type": "Models.Functions.Constant, Models",
+                          "FixedValue": 365.0,
+                          "Units": null,
+                          "Name": "DaysInAYear",
                           "ResourceName": null,
                           "Children": [],
                           "Enabled": true,
@@ -2304,121 +2056,6 @@
                       "ReadOnly": false
                     }
                   ],
-                  "Enabled": true,
-                  "ReadOnly": false
-                },
-                {
-                  "$type": "Models.PMF.Phen.GenericPhase, Models",
-                  "Start": "StartBolting",
-                  "End": "EndBolting",
-                  "IsEmerged": true,
-                  "Name": "Bolt",
-                  "ResourceName": null,
-                  "Children": [
-                    {
-                      "$type": "Models.Functions.VariableReference, Models",
-                      "VariableName": "[Phenology].ThermalTime",
-                      "Name": "Progression",
-                      "ResourceName": null,
-                      "Children": [],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    },
-                    {
-                      "$type": "Models.Functions.Constant, Models",
-                      "FixedValue": 800.0,
-                      "Units": null,
-                      "Name": "Target",
-                      "ResourceName": null,
-                      "Children": [],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    },
-                    {
-                      "$type": "Models.Memo, Models",
-                      "Text": "The 800ÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â‚ÃƒÂƒÃ‚Â‚ÃƒÂ‚Ã‚Â°Cd is is an empirical fit based on the 2014 sowing date trial ([Khaembah_etal_2017]).",
-                      "Name": "Memo",
-                      "ResourceName": null,
-                      "Children": [],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    }
-                  ],
-                  "Enabled": true,
-                  "ReadOnly": false
-                },
-                {
-                  "$type": "Models.PMF.Phen.EndPhase, Models",
-                  "Start": "EndBolting",
-                  "End": "Maturity",
-                  "IsEmerged": true,
-                  "Name": "Maturity",
-                  "ResourceName": null,
-                  "Children": [
-                    {
-                      "$type": "Models.Functions.Constant, Models",
-                      "FixedValue": 15000.0,
-                      "Units": null,
-                      "Name": "Target",
-                      "ResourceName": null,
-                      "Children": [],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    },
-                    {
-                      "$type": "Models.Functions.VariableReference, Models",
-                      "VariableName": "[Phenology].ThermalTime",
-                      "Name": "ThermalTime",
-                      "ResourceName": null,
-                      "Children": [],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    },
-                    {
-                      "$type": "Models.Memo, Models",
-                      "Text": "This is estimated to be 3600ÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â‚ÃƒÂƒÃ‚Â‚ÃƒÂ‚Ã‚Â°Cd\r\nA value of 3600ÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â‚ÃƒÂƒÃ‚Â‚ÃƒÂ‚Ã‚Â°Cd (i.e. sum of ÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â‚ÃƒÂƒÃ‚Â‚ÃƒÂ‚Ã‚Â°Cd from crop emergence to the end of the vegetative phase) is assumed for the duration of the ÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â¢ÃƒÂƒÃ‚Â¢ÃƒÂ‚Ã‚Â‚ÃƒÂ‚Ã‚Â¬ÃƒÂƒ\u0085ÃƒÂ‚Ã‚Â“MaturityÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â¢ÃƒÂƒÃ‚Â¢ÃƒÂ‚Ã‚Â‚ÃƒÂ‚Ã‚Â¬ phase. Accumulated thermal time (TTsum) for each phase (plantedÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â¢ÃƒÂƒÃ‚Â¢ÃƒÂ‚Ã‚Â‚ÃƒÂ‚Ã‚Â¬ÃƒÂƒÃ‚Â¢ÃƒÂ‚Ã‚Â€ÃƒÂ‚Ã‚Âœvegetative) was empirically derived from the 2014 sowing date data ([Khaembah_etal_2017]).",
-                      "Name": "Memo",
-                      "ResourceName": null,
-                      "Children": [],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    }
-                  ],
-                  "Enabled": true,
-                  "ReadOnly": false
-                },
-                {
-                  "$type": "Models.Functions.AccumulateFunction, Models",
-                  "StartStageName": "Emergence",
-                  "EndStageName": "Maturity",
-                  "ResetStageName": null,
-                  "FractionRemovedOnCut": 0.0,
-                  "FractionRemovedOnHarvest": 0.0,
-                  "FractionRemovedOnGraze": 0.0,
-                  "FractionRemovedOnPrune": 0.0,
-                  "Name": "AccumulatedThermalTime",
-                  "ResourceName": null,
-                  "Children": [
-                    {
-                      "$type": "Models.Functions.VariableReference, Models",
-                      "VariableName": "[Phenology].ThermalTime",
-                      "Name": "VariableReference",
-                      "ResourceName": null,
-                      "Children": [],
-                      "Enabled": true,
-                      "ReadOnly": false
-                    }
-                  ],
-                  "Enabled": true,
-                  "ReadOnly": false
-                },
-                {
-                  "$type": "Models.Functions.PhotoperiodFunction, Models",
-                  "Twilight": -6.0,
-                  "DayLength": 0.0,
-                  "Name": "Photoperiod",
-                  "ResourceName": null,
-                  "Children": [],
                   "Enabled": true,
                   "ReadOnly": false
                 }
@@ -3223,8 +2860,8 @@
                       "Children": [
                         {
                           "$type": "Models.Functions.PhaseLookupValue, Models",
-                          "Start": "Emergence",
-                          "End": "InitialReproductive",
+                          "Start": "BudBreak",
+                          "End": "StartFruitGrowth",
                           "Name": "NonReproductive",
                           "ResourceName": null,
                           "Children": [
@@ -3283,8 +2920,8 @@
                         },
                         {
                           "$type": "Models.Functions.PhaseLookupValue, Models",
-                          "Start": "InitialReproductive",
-                          "End": "EndBolting",
+                          "Start": "StartFruitGrowth",
+                          "End": "FruitMature",
                           "Name": "Reproductive",
                           "ResourceName": null,
                           "Children": [
@@ -3292,7 +2929,7 @@
                               "$type": "Models.Functions.Constant, Models",
                               "FixedValue": 0.0,
                               "Units": "g/m^2",
-                              "Name": "InitialWtFunction",
+                              "Name": "PartitionFraction",
                               "ResourceName": null,
                               "Children": [],
                               "Enabled": true,
@@ -3838,62 +3475,6 @@
                                 }
                               ],
                               "Enabled": true,
-                              "ReadOnly": false
-                            },
-                            {
-                              "$type": "Models.Functions.MultiplyFunction, Models",
-                              "Name": "Metabolic1",
-                              "ResourceName": null,
-                              "Children": [
-                                {
-                                  "$type": "Models.Functions.Constant, Models",
-                                  "FixedValue": 0.0,
-                                  "Units": "6.25",
-                                  "Name": "CrudeProteinFactor",
-                                  "ResourceName": null,
-                                  "Children": [],
-                                  "Enabled": false,
-                                  "ReadOnly": false
-                                },
-                                {
-                                  "$type": "Models.Functions.VariableReference, Models",
-                                  "VariableName": "[Leaf].Nitrogen.Supplies.ReAllocation.Metabolic",
-                                  "Name": "NitrogenReAllocation",
-                                  "ResourceName": null,
-                                  "Children": [],
-                                  "Enabled": false,
-                                  "ReadOnly": false
-                                }
-                              ],
-                              "Enabled": false,
-                              "ReadOnly": false
-                            },
-                            {
-                              "$type": "Models.Functions.MultiplyFunction, Models",
-                              "Name": "Storage1",
-                              "ResourceName": null,
-                              "Children": [
-                                {
-                                  "$type": "Models.Functions.Constant, Models",
-                                  "FixedValue": 0.0,
-                                  "Units": "6.25",
-                                  "Name": "CrudeProteinFactor",
-                                  "ResourceName": null,
-                                  "Children": [],
-                                  "Enabled": false,
-                                  "ReadOnly": false
-                                },
-                                {
-                                  "$type": "Models.Functions.VariableReference, Models",
-                                  "VariableName": "[Leaf].Nitrogen.Supplies.ReAllocation.Metabolic",
-                                  "Name": "NitrogenReAllocation",
-                                  "ResourceName": null,
-                                  "Children": [],
-                                  "Enabled": false,
-                                  "ReadOnly": false
-                                }
-                              ],
-                              "Enabled": false,
                               "ReadOnly": false
                             }
                           ],
@@ -5043,8 +4624,8 @@
                     },
                     {
                       "$type": "Models.Functions.PhaseLookupValue, Models",
-                      "Start": "Emergence",
-                      "End": "StartBolting",
+                      "Start": "BudBreak",
+                      "End": "FruitMature",
                       "Name": "Vegetative",
                       "ResourceName": null,
                       "Children": [
@@ -5248,27 +4829,6 @@
                       ],
                       "Enabled": true,
                       "ReadOnly": false
-                    },
-                    {
-                      "$type": "Models.Functions.PhaseLookupValue, Models",
-                      "Start": "StartBolting",
-                      "End": "EndBolting",
-                      "Name": "Reproductive",
-                      "ResourceName": null,
-                      "Children": [
-                        {
-                          "$type": "Models.Functions.Constant, Models",
-                          "FixedValue": 0.0,
-                          "Units": null,
-                          "Name": "Constant",
-                          "ResourceName": null,
-                          "Children": [],
-                          "Enabled": true,
-                          "ReadOnly": false
-                        }
-                      ],
-                      "Enabled": true,
-                      "ReadOnly": false
                     }
                   ],
                   "Enabled": true,
@@ -5276,13 +4836,13 @@
                 },
                 {
                   "$type": "Models.Functions.AccumulateFunction, Models",
-                  "StartStageName": "Emergence",
-                  "EndStageName": "EndBolting",
-                  "ResetStageName": null,
+                  "StartStageName": "BudBreak",
+                  "EndStageName": "FruitMature",
+                  "ResetStageName": "BareTree",
                   "FractionRemovedOnCut": 0.0,
                   "FractionRemovedOnHarvest": 0.0,
                   "FractionRemovedOnGraze": 0.0,
-                  "FractionRemovedOnPrune": 0.0,
+                  "FractionRemovedOnPrune": 1.0,
                   "Name": "NodeNumber",
                   "ResourceName": null,
                   "Children": [
@@ -5319,8 +4879,8 @@
                 },
                 {
                   "$type": "Models.Functions.PhaseLookupValue, Models",
-                  "Start": "Emergence",
-                  "End": "EndBolting",
+                  "Start": "BudBreak",
+                  "End": "FruitMature",
                   "Name": "Phyllochron",
                   "ResourceName": null,
                   "Children": [
@@ -7229,8 +6789,8 @@
                       "Children": [
                         {
                           "$type": "Models.Functions.PhaseLookupValue, Models",
-                          "Start": "Germination",
-                          "End": "StartBolting",
+                          "Start": "BudBreak",
+                          "End": "FruitMature",
                           "Name": "Vegetative",
                           "ResourceName": null,
                           "Children": [
@@ -8331,8 +7891,8 @@
                       "Children": [
                         {
                           "$type": "Models.Functions.PhaseLookupValue, Models",
-                          "Start": "Emergence",
-                          "End": "InitialReproductive",
+                          "Start": "StartFruitGrowth",
+                          "End": "FruitMature",
                           "Name": "NonReproductive",
                           "ResourceName": null,
                           "Children": [
@@ -8382,27 +7942,6 @@
                                   "ReadOnly": false
                                 }
                               ],
-                              "Enabled": true,
-                              "ReadOnly": false
-                            }
-                          ],
-                          "Enabled": true,
-                          "ReadOnly": false
-                        },
-                        {
-                          "$type": "Models.Functions.PhaseLookupValue, Models",
-                          "Start": "InitialReproductive",
-                          "End": "EndBolting",
-                          "Name": "Reproductive",
-                          "ResourceName": null,
-                          "Children": [
-                            {
-                              "$type": "Models.Functions.Constant, Models",
-                              "FixedValue": 0.0,
-                              "Units": "g/m^2",
-                              "Name": "InitialWtFunction",
-                              "ResourceName": null,
-                              "Children": [],
                               "Enabled": true,
                               "ReadOnly": false
                             }
