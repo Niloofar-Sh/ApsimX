@@ -96,7 +96,7 @@ namespace Models.PMF
         /// -------------------------------------------------------------------------------------------------
 
         /// <summary>Tolerance for biomass comparisons</summary>
-        protected double tolerence = 3e-12;
+        protected double tolerence = 3e-10;
 
         private double startLiveC { get; set; }
         private double startDeadC { get; set; }
@@ -438,8 +438,8 @@ namespace Models.PMF
                 }
 
                 //Do initial calculations
-                SenescenceRate = senescenceRate.Value();
-                DetachmentRate = detachmentRate.Value();
+                SenescenceRate = Math.Max(0,Math.Min(1,senescenceRate.Value()));
+                DetachmentRate = Math.Max(0, Math.Min(1, detachmentRate.Value()));
                 setNconcs();
                 Carbon.SetSuppliesAndDemands();
             }

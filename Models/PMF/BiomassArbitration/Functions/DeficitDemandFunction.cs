@@ -120,7 +120,7 @@ namespace Models.PMF
             OrganNutrientDelta Carbon = parentOrgan.FindChild("Carbon") as OrganNutrientDelta;
             double PotentialWt = (parentOrgan.Live.Carbon.Total + Carbon.DemandsAllocated.Total) / parentOrgan.Cconc;
             double targetAmount = (PotentialWt * upperConc) - (PotentialWt * LowerConc);
-            return targetAmount - currentAmount;
+            return Math.Max(0,targetAmount - currentAmount);
         }
 
         private double calcStructuralCarbonDemand()
@@ -134,7 +134,7 @@ namespace Models.PMF
             double potentialTotalC = potentialStructuralC / organNutrientDelta.ConcentrationOrFraction.Structural;
 
             double targetAmount = potentialTotalC * poolTargetConc;
-            return targetAmount - currentAmount;
+            return Math.Max(0,targetAmount - currentAmount);
         }
 
 
